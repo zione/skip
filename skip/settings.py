@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'counter.apps.CounterConfig',
 ]
 
 MIDDLEWARE = [
@@ -73,12 +75,19 @@ WSGI_APPLICATION = 'skip.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'skip',
+#         'USER': 'root',
+#         'PASSWORD': 'hy546800',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'skip',
-        'USER': 'root',
-        'PASSWORD': 'hy546800',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -121,3 +130,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':{
+        'rest_framework.permissions.AllowAny',
+    }
+}
